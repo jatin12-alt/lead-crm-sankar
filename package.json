@@ -1,0 +1,18 @@
+{
+  "name": "lead-crm-sankar",
+  "version": "1.0.0",
+  "description": "A full-stack Mini CRM for managing leads, built with React, Node.js, Express, and PostgreSQL.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && node server.js",
+    "start:frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
