@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const db = require('./db');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -91,6 +92,14 @@ app.delete('/api/leads/:id', async (req, res) => {
     console.error('Error deleting lead:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+// Serve static assets in production
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Fallback for Single Page Application (SPA) routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 app.listen(PORT, () => {

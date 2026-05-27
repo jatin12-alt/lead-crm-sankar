@@ -6,7 +6,9 @@ import LeadTable from './components/LeadTable';
 import SearchBar from './components/SearchBar';
 import EditLeadModal from './components/EditLeadModal';
 
-const API_URL = 'http://localhost:5000/api/leads';
+const API_URL = import.meta.env.PROD 
+  ? '/api/leads' 
+  : 'http://localhost:5000/api/leads';
 
 function App() {
   const [leads, setLeads] = useState([]);
